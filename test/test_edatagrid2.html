@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <!-- TopJUI框架样式 -->
+    <link type="text/css" href="../static/TopJUI/topjui/themes/default/topjui.core.min.css" rel="stylesheet">
+    <link type="text/css" href="../static/TopJUI/topjui/themes/default/topjui.blue.css" rel="stylesheet" id="dynamicTheme"/>
+    <!-- FontAwesome字体图标 -->
+    <link type="text/css" href="../static/TopJUI/static/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- layui框架样式 -->
+    <link type="text/css" href="../static/TopJUI/static/plugins/layui/css/layui.css" rel="stylesheet"/>
+    <!-- jQuery相关引用 -->
+    <script type="text/javascript" src="../static/TopJUI/static/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/TopJUI/static/plugins/jquery/jquery.cookie.js"></script>
+    <!-- TopJUI框架配置 -->
+    <script type="text/javascript" src="../static/TopJUI/static/public/js/topjui.config.js"></script>
+    <!-- TopJUI框架核心-->
+    <script type="text/javascript" src="../static/TopJUI/topjui/js/topjui.core.min.js"></script>
+    <!-- TopJUI中文支持 -->
+    <script type="text/javascript" src="../static/TopJUI/topjui/js/locale/topjui.lang.zh_CN.js"></script>
+    <!-- layui框架js -->
+    <script type="text/javascript" src="../static/TopJUI/static/plugins/layui/layui.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+<table id="Insurance" data-toggle="topjui-edatagrid"
+       data-options="id:'Insurance',
+       idField:'uuid',
+       reloadAfterSave:true,
+       url:'../static/TopJUI/json/config/config_1.json',
+       saveUrl:_ctx + '/json/response/save.json',
+       updateUrl:_ctx + '/json/response/update.json',
+       destroyUrl:_ctx + '/json/response/delete.json'"></table>
+<script type="text/javascript" src="test_edatagrid2.js" charset="utf-8"></script>
+<!-- 表格工具栏 -->
+<div id="Insurance-toolbar" data-options="grid:{
+           type:'edatagrid',
+           id:'Insurance'
+       }" class="topjui-toolbar">
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="method:'edatagrid',
+       extend: '#Insurance-toolbar',
+       iconCls:'fa fa-plus',
+       btnCls:'topjui-btn-green',
+       type:'addRow'">新增</a>
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="method:'edatagrid',
+       extend: '#Insurance-toolbar',
+       iconCls:'fa fa-save',
+       btnCls:'topjui-btn-brown',
+       type:'saveRow'">保存</a>
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="method:'edatagrid',
+       extend: '#Insurance-toolbar',
+       iconCls:'fa fa-remove',
+       btnCls:'topjui-btn-black',
+       type:'cancelRow'">取消</a>
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="method:'edatagrid',
+       extend: '#Insurance-toolbar',
+       iconCls:'fa fa-remove',
+       btnCls:'topjui-btn-blue',
+       type:'destroyRow'">删除</a>
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="method:'filter',
+       extend: '#Insurance-toolbar',
+       btnCls:'topjui-btn-black'">过滤</a>
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="method:'search',
+       extend: '#Insurance-toolbar',
+       btnCls:'topjui-btn-blue'">查询</a>
+</div>
+
+</body>
+<script>
+    function onClickRow(index,row){
+        console.log(index)
+        console.log(row)
+        console.log(index,row)
+       console.log($("#Insurance").iEdatagrid("getColumnOption","degree"))
+    }
+</script>
+</html>

@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content='project,company,purchase,logistics'/>
+    <meta name="description" content='Info sharing'/>
+    <title>Info system</title>
+    <!-- 浏览器标签图片 -->
+    <link rel="shortcut icon" href="/static/TopJUI/topjui/images/favicon.ico"/>
+    <!-- TopJUI框架样式 -->
+    <link type="text/css" href="/static/TopJUI/topjui/themes/default/topjui.core.min.css" rel="stylesheet">
+    <link type="text/css" href="/static/TopJUI/topjui/themes/default/topjui.blue.css" rel="stylesheet" id="dynamicTheme"/>
+    <!-- FontAwesome字体图标 -->
+    <link type="text/css" href="/static/TopJUI/static/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- jQuery相关引用 -->
+    <script type="text/javascript" src="/static/TopJUI/static/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/TopJUI/static/plugins/jquery/jquery.cookie.js"></script>
+    <!-- TopJUI框架配置 -->
+    <script type="text/javascript" src="/static/TopJUI/static/public/js/topjui.config.js"></script>
+    <!-- TopJUI框架核心 -->
+    <script type="text/javascript" src="/static/TopJUI/topjui/js/topjui.core.min.js"></script>
+    <!-- TopJUI中文支持 -->
+    <script type="text/javascript" src="/static/TopJUI/topjui/js/locale/topjui.lang.zh_CN.js"></script>
+
+
+    <style>
+        .nav-bar .nav-left{
+            width: 230px;
+            float: left;
+        }
+        .nav-bar .nav-right{
+            width: 410px;
+            float: right;
+
+        }
+        .nav-bar .nav-center{
+            margin-left: 230px;
+            margin-right: 245px;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+
+        }
+        .banner .nav-bar>div{
+            height: 50px;
+            line-height: 50px;
+        }
+        .nav-center ul{
+            list-style-type: none;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            font-size: 0;
+            position: relative;
+            left: 0;
+        }
+        .nav-center ul li{
+            display: inline-block;
+            text-align: center;
+            margin: 0;
+            width: 100px;
+        }
+        .nav-center ul li a{
+            text-decoration: none;
+        }
+        .nav-btn{
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+            line-height: 50px;
+            color: white;
+            font-size: 20px;
+        }
+        .nav-group{
+            position: relative;
+            transition: all .3s;
+            padding: 0;
+        }
+        /*.nav-bar .nav-btn:hover,.nav-bar .nav-group li:hover,.nav-bar .nav-group li a:hover{*/
+        /*background: #367fa9;*/
+        /*color:white;*/
+        /*}*/
+        .nav-group  .bannerMenu{
+            padding: 5px 0;
+        }
+        .hide {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+<table id="productDg"></table>
+
+<!-- 表格工具栏开始 -->
+<div id="productDg-toolbar" class="topjui-toolbar"
+     data-options="grid:{
+           type:'datagrid',
+           id:'productDg'
+       }">
+    <a id="add" href="javascript:void(0)">新增</a>
+    <a id="edit" href="javascript:void(0)">编辑</a>
+    <a id="batchUpdate" href="javascript:void(0)">批量操作</a>
+    <a id="delete" href="javascript:void(0)">删除</a>
+    <a id="filter" href="javascript:void(0)">过滤</a>
+    <a id="search" href="javascript:void(0)">查询</a>
+    <a id="import" href="javascript:void(0)">导入</a>
+    <a id="export" href="javascript:void(0)">导出</a>
+    <a id="openTab" href="javascript:void(0)">标签页</a>
+    <a id="openWindow" href="javascript:void(0)">新窗口</a>
+    <a id="request" href="javascript:void(0)">普通请求</a>
+    <a id="myFun" href="javascript:void(0)">自定义方法</a>
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="menu:'#exportSubMenu',
+       btnCls:'topjui-btn-blue',
+       hasDownArrow:true,
+       iconCls:'fa fa-list'">更多</a>
+    <div id="exportSubMenu" class="topjui-toolbar"
+         data-options="grid:{
+           type:'datagrid',
+           id:'productDg'
+       }" style="width:150px;">
+        <div data-toggle="topjui-menubutton"
+             data-options="method:'request',
+             iconCls:'fa fa-file-pdf-o',
+             url:_ctx + '/json/response/success.json?uuid={uuid}'">导出 PDF 报表
+        </div>
+        <div data-toggle="topjui-menubutton"
+             data-options="method:'export',
+             iconCls:'fa fa-file-excel-o',
+             url: _ctx + '/json/response/export.html'">导出EXCEL列表
+        </div>
+        <div data-toggle="topjui-menubutton"
+             data-options="method:'request',
+             iconCls:'fa fa-file-excel-o',
+             url:_ctx + '/json/response/success.json?uuid={uuid}'">导出EXCEL报表
+        </div>
+        <div data-toggle="topjui-menubutton"
+             data-options="method:'request',
+             iconCls:'fa fa-file-word-o',
+             url:_ctx + '/json/response/success.json?uuid={uuid}'">导出WORD报表
+        </div>
+    </div>
+    <form id="queryForm" class="search-box">
+        <input type="text" name="name" data-toggle="topjui-textbox"
+               data-options="id:'name',prompt:'产品名称',width:100">
+        <input type="text" name="code" data-toggle="topjui-textbox"
+               data-options="id:'code',prompt:'产品型号',width:100">
+        <a id="queryBtn" href="javascript:void(0)">查询</a>
+    </form>
+</div>
+<!-- 表格工具栏结束 -->
+
+<!-- 表格行编辑窗口 -->
+<form id="editDialog"></form>
+<script type="text/javascript" src="/static/HTML/js/test_first_page.js"></script>
+
+
+</body>

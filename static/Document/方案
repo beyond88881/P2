@@ -1,0 +1,10 @@
+1. 采用web storage方案存储常用的json数据，比如 HTML的数据
+HTML5本地存储使用详解_小小喵的博客-CSDN博客_本地存储  https://blog.csdn.net/weixin_42881744/article/details/81414262
+
+2. 如果database中的数据有更新，则不会自动更新到web storage中，此时采用：
+1） pop up窗体进行新查询时更新web storage
+2） 在page载入时询问是否需要更新，如果yes则更新对应的web storage
+3） 在一般为闲时的时间定期更新最新database数据到web storage
+
+3. 对于网络中断时，更新数据将被临时存储在web storage，在恢复网络连接到服务器时数据更新上传到服务器进行处理，由于存在同步问题，可能会造成数据丢失
+故一般方案为在Excel文件里操作，并在联网后上传到服务器处理，以避免数据丢失

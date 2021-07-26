@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% extends "html\TMPL_main.html" %}
+{% block page1 %}
+
+<table id="productDg"></table>
+
+<!-- 表格工具栏开始 -->
+<div id="productDg-toolbar" class="topjui-toolbar"
+     data-options="grid:{
+           type:'datagrid',
+           id:'productDg'
+       }">
+    <a id="add" href="javascript:void(0)">新增</a>
+    <a id="edit" href="javascript:void(0)">编辑</a>
+    <a id="batchUpdate" href="javascript:void(0)">批量操作</a>
+    <a id="delete" href="javascript:void(0)">删除</a>
+    <a id="filter" href="javascript:void(0)">过滤</a>
+    <a id="search" href="javascript:void(0)">查询</a>
+    <a id="import" href="javascript:void(0)">导入</a>
+    <a id="export" href="javascript:void(0)">导出</a>
+    <a id="openTab" href="javascript:void(0)">标签页</a>
+    <a id="openWindow" href="javascript:void(0)">新窗口</a>
+    <a id="request" href="javascript:void(0)">普通请求</a>
+    <a id="myFun" href="javascript:void(0)">自定义方法</a>
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="menu:'#exportSubMenu',
+       btnCls:'topjui-btn-blue',
+       hasDownArrow:true,
+       iconCls:'fa fa-list'">更多</a>
+    <div id="exportSubMenu" class="topjui-toolbar"
+         data-options="grid:{
+           type:'datagrid',
+           id:'productDg'
+       }" style="width:150px;">
+        <div data-toggle="topjui-menubutton"
+             data-options="method:'request',
+             iconCls:'fa fa-file-pdf-o',
+             url:_ctx + '/json/response/success.json?uuid={uuid}'">导出 PDF 报表
+        </div>
+        <div data-toggle="topjui-menubutton"
+             data-options="method:'export',
+             iconCls:'fa fa-file-excel-o',
+             url: _ctx + '/json/response/export.html'">导出EXCEL列表
+        </div>
+        <div data-toggle="topjui-menubutton"
+             data-options="method:'request',
+             iconCls:'fa fa-file-excel-o',
+             url:_ctx + '/json/response/success.json?uuid={uuid}'">导出EXCEL报表
+        </div>
+        <div data-toggle="topjui-menubutton"
+             data-options="method:'request',
+             iconCls:'fa fa-file-word-o',
+             url:_ctx + '/json/response/success.json?uuid={uuid}'">导出WORD报表
+        </div>
+    </div>
+    <form id="queryForm" class="search-box">
+        <input type="text" name="name" data-toggle="topjui-textbox"
+               data-options="id:'name',prompt:'产品名称',width:100">
+        <input type="text" name="code" data-toggle="topjui-textbox"
+               data-options="id:'code',prompt:'产品型号',width:100">
+        <a id="queryBtn" href="javascript:void(0)">查询</a>
+    </form>
+</div>
+<!-- 表格工具栏结束 -->
+
+<!-- 表格行编辑窗口 -->
+<form id="editDialog"></form>
+<script type="text/javascript" src="/static/HTML/js/first_page.js"></script>
+
+
+{% endblock %}
