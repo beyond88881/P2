@@ -1,0 +1,4 @@
+共用性质的js文件或py文件 放在static/static/js_public 和 static/static/py_public 下
+所有页面资料 放在 static/HTML 下
+共用的页面 放在 static/HTML/html
+同一个页面组的页面 放在 比如：static/HTML/company

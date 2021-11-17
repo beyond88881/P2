@@ -1,0 +1,12 @@
+1. 数据库 建表
+2. 建立新的TopJUI或EasyUI的界面
+3. 建立逻辑层
+3.1 建立Django APP：python manage.py startapp *******
+3.2 在项目的setting下写入
+APP下建立models和views文件夹，并在文件夹建立对应的view和model的.py文件
+3.3 对于数据库的表，在cmd中逆向使用 python manage.py inspectdb > company/models.py 语法生成moduel.py中的模块
+3.4 编写CRUD的函数
+3.4.1 可以使用在“D:\spacePy\4_tools”下的一些工具 用于转换models中的信息为easyui的js或HTML信息
+3.5 在URL.py中修改或增加对应的链接
+
+
