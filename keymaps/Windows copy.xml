@@ -2,5 +2,11 @@
   <action id="CodeCompletion">
     <keyboard-shortcut first-keystroke="alt slash" />
   </action>
+  <action id="ExportSettings">
+    <keyboard-shortcut first-keystroke="shift ctrl f1" />
+  </action>
   <action id="HippieCompletion" />
+  <action id="ImportSettings">
+    <keyboard-shortcut first-keystroke="shift ctrl f3" />
+  </action>
 </keymap>
